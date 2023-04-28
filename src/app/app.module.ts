@@ -8,7 +8,6 @@ import { AnnoncesComponent } from './components/annonces/annonces.component';
 import { AnnoncdetailComponent } from './components/annoncdetail/annoncdetail.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxStarRatingModule } from 'ngx-star-rating';
-import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { FormsModule } from '@angular/forms';
 
@@ -19,7 +18,6 @@ import { CreateAnnonceComponent } from './create-annonce/create-annonce.componen
     AppComponent,
     AnnoncesComponent,
     AnnoncdetailComponent,
-    LoginPageComponent,
     RegisterPageComponent,
     HomePageComponent,
     CreateAnnonceComponent,
