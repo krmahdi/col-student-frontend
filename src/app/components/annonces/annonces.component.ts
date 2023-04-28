@@ -12,6 +12,7 @@ import { Annonce } from 'src/app/interfaces/annonce.interface';
 
 export class AnnoncesComponent implements OnInit {
   response: Annonce[];
+  
 
   constructor(private annonceService: AnnonceService) { }
   ngOnInit(): void {
@@ -21,6 +22,8 @@ export class AnnoncesComponent implements OnInit {
         this.response = results;
       }
     );
+   
+    
   }
 
   
