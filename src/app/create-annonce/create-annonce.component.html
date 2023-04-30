@@ -1,1 +1,49 @@
-<p>create-annonce works!</p>
+<form [formGroup]="advertisementForm" (ngSubmit)="onSubmit()" class="p-3 border rounded">
+    <div class="mb-3">
+      <label for="location" class="form-label">Location:</label>
+      <input type="text" id="location" class="form-control" formControlName="location">
+    </div>
+  
+    <div class="mb-3">
+      <label for="description" class="form-label">Description:</label>
+      <textarea id="description" class="form-control" formControlName="description"></textarea>
+    </div>
+  
+    <div class="mb-3">
+      <label for="superficie" class="form-label">Superficie:</label>
+      <input type="number" id="superficie" class="form-control" formControlName="superficie">
+    </div>
+  
+    <div class="mb-3">
+      <label for="loyer" class="form-label">Loyer:</label>
+      <input type="number" id="loyer" class="form-control" formControlName="loyer">
+    </div>
+  
+    <div class="mb-3">
+      <label for="nbChambre" class="form-label">Nombre de chambres:</label>
+      <input type="number" id="nbChambre" class="form-control" formControlName="nbChambre">
+    </div>
+  
+    <div class="mb-3 form-check">
+      <input type="checkbox" id="animaux" class="form-check-input" formControlName="animaux">
+      <label for="animaux" class="form-check-label">Animaux autorisés</label>
+    </div>
+  
+    <div class="mb-3 form-check">
+      <input type="checkbox" id="fumeurs" class="form-check-input" formControlName="fumeurs">
+      <label for="fumeurs" class="form-check-label">Fumeurs autorisés</label>
+    </div>
+  
+    <div class="mb-3">
+      <label for="adresse" class="form-label">Adresse:</label>
+      <input type="text" id="adresse" class="form-control" formControlName="adresse">
+    </div>
+  
+    <div class="mb-3">
+      <label for="caution" class="form-label">Caution:</label>
+      <input type="number" id="caution" class="form-control" formControlName="caution">
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  

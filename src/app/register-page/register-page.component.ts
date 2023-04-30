@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import {Jwt} from 'jsonwebtoken';
+
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -15,7 +17,7 @@ export class RegisterPageComponent {
   firstname:string;
   lastname:string;
   email:string;
-
+token:string;
   constructor(private authenticationService: AuthenticationService,private route: Router) { }
   ngOnInit() {
    
@@ -26,7 +28,11 @@ export class RegisterPageComponent {
     this.authenticationService.login(this.username,this.password)
       .subscribe((authenticationResponse) => {
         console.log(authenticationResponse);
-        this.route.navigate(['/annonces']);
+        this.route.navigate(['/acceuil']);
+        sessionStorage.setItem('user', this.username);
+        sessionStorage.setItem('token', 'HTTP_TOKEN ' + this.token);
+        return
+
       },(error) => {
         this.errorMessage = 'Invalid credentials';
       })
@@ -43,4 +49,6 @@ export class RegisterPageComponent {
       }
     );
   }
+
+
 }

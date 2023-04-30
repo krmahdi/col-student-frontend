@@ -15,7 +15,9 @@ export class AnnonceService {
   getAnnonce(uuid: number = 1 ): Observable <Annonce> {
     return this.http.get<any>(`${this.apiUrl}/${uuid}`)
   }
-    
+  createAnnonce(annonce: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/create`, annonce);
+  }
 }
 /*
 import { HttpClient } from '@angular/common/http';

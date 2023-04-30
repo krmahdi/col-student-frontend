@@ -57,7 +57,7 @@ export class AuthenticationService {
     return !!localStorage.getItem('currentUser');
   }
 
-  getToken(): string | null {
+  getToken(): string  {
     // return jwt token from local storage
     const currentUserString = localStorage.getItem('currentUser');
     const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
@@ -65,5 +65,7 @@ export class AuthenticationService {
     return currentUser?.token || null;
 }
 
-
+getSignedinUser() {
+  return sessionStorage.getItem('user') as string;
+}
 }
