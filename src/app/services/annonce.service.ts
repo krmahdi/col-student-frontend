@@ -1,14 +1,19 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Annonce } from '../interfaces/annonce.interface';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({providedIn: 'root'})
 export class AnnonceService {
-  private  apiUrl : String = 'http://localhost:8080/api/v1/auth/annonce';
+  private  apiUrl : String = 'http://localhost:8080/api/auth/v1/annonce';
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient,private authService:AuthenticationService) { 
   }
+  
+     token = this.authService.getToken();
+   
+   
   getAnnonces(): Observable <Annonce[]> {
     return this.http.get<any>(`${this.apiUrl}`)
   }
@@ -16,7 +21,17 @@ export class AnnonceService {
     return this.http.get<any>(`${this.apiUrl}/${uuid}`)
   }
   createAnnonce(annonce: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/create`, annonce);
+    return this.http.post(`${this.apiUrl}/create`, annonce, { headers: new HttpHeaders().set( 'Authorization', `Bearer ${this.token}`) });
+  }
+
+  search(query: string): Observable<Annonce[]> {
+    const url = `${this.apiUrl}/search?q=${query}`;
+    return this.http.get<Annonce[]>(url);
+  }
+
+  filter(annonce: Annonce): Observable<Annonce[]> {
+    const url = `${this.apiUrl}/filter`;
+    return this.http.get<Annonce[]>(url, { responseType: 'json' });
   }
 }
 /*

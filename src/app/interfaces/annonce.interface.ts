@@ -10,10 +10,10 @@ export interface Annonce {
     adresse: string,
     caution: number,
     supprimee: boolean,
-    longitude: string,
-    altitude: string,
+    longitude: number,
+    altitude: number,
     user: any,
-    evaluations: any[],
-    photos: any[],
-    signalements: any[]
+    evaluations: any,
+    photos: any,
+    signalements: any
 }

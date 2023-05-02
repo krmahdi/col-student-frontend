@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
  
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,9 +13,11 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CreateAnnonceComponent } from './create-annonce/create-annonce.component';
-import{HttpInterceptorService} from './services/interceptor.service';
 import { NavbarComponent } from './navbar/navbar.component';
-import { SearchFormComponent } from './search-form/search-form.component'
+import { SearchFormComponent } from './search-form/search-form.component';
+import { MapComponentComponent } from './map-component/map-component.component'
+import { LeafletModule } from "@asymmetrik/ngx-leaflet";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,7 @@ import { SearchFormComponent } from './search-form/search-form.component'
     CreateAnnonceComponent,
     NavbarComponent,
     SearchFormComponent,
+    MapComponentComponent,
     
       
   ],
@@ -36,14 +39,10 @@ import { SearchFormComponent } from './search-form/search-form.component'
     FontAwesomeModule,
     NgxStarRatingModule,
     FormsModule,
-    ReactiveFormsModule
-    
+    ReactiveFormsModule,
+    LeafletModule,
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: HttpInterceptorService,
-    multi: true
-  }
+  providers: [
     
   ],
 

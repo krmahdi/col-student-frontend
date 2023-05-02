@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthenticationService {
 
-  private apiUrl = 'http://localhost:8080/api/v1/auth'; // your API URL
+  private apiUrl = 'http://localhost:8080/api/auth'; // your API URL
 
   constructor(private http: HttpClient) { }
 

@@ -1,49 +1,43 @@
-<form [formGroup]="advertisementForm" (ngSubmit)="onSubmit()" class="p-3 border rounded">
-    <div class="mb-3">
-      <label for="location" class="form-label">Location:</label>
-      <input type="text" id="location" class="form-control" formControlName="location">
+<div class="container mt-3" *ngIf="isLoggedIn()">
+  <h1>Créer une request</h1>
+  <form (ngSubmit)="onSubmit()" #annonceForm="ngForm" novalidate>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" class="form-control" name="description" [(ngModel)]="annonce.description" required></textarea>
     </div>
-  
-    <div class="mb-3">
-      <label for="description" class="form-label">Description:</label>
-      <textarea id="description" class="form-control" formControlName="description"></textarea>
+    <div class="form-group">
+      <label for="superficie">Superficie (en m²)</label>
+      <input id="superficie" class="form-control" name="superficie" [(ngModel)]="annonce.superficie" type="number" required>
     </div>
-  
-    <div class="mb-3">
-      <label for="superficie" class="form-label">Superficie:</label>
-      <input type="number" id="superficie" class="form-control" formControlName="superficie">
+    <div class="form-group">
+      <label for="loyer">Loyer (en €)</label>
+      <input id="loyer" class="form-control" name="loyer" [(ngModel)]="annonce.loyer" type="number" required>
     </div>
-  
-    <div class="mb-3">
-      <label for="loyer" class="form-label">Loyer:</label>
-      <input type="number" id="loyer" class="form-control" formControlName="loyer">
+    <div class="form-group">
+      <label for="nbChambre">Nombre de chambres</label>
+      <input id="nbChambre" class="form-control" name="nbChambre" [(ngModel)]="annonce.nbChambre" type="number" required>
     </div>
-  
-    <div class="mb-3">
-      <label for="nbChambre" class="form-label">Nombre de chambres:</label>
-      <input type="number" id="nbChambre" class="form-control" formControlName="nbChambre">
+    <div class="form-group">
+      <label for="nbPersonne">Nombre de personnes</label>
+      <input id="nbPersonne" class="form-control" name="nbPersonne" [(ngModel)]="annonce.nbPersonne" type="number" required>
     </div>
-  
-    <div class="mb-3 form-check">
-      <input type="checkbox" id="animaux" class="form-check-input" formControlName="animaux">
-      <label for="animaux" class="form-check-label">Animaux autorisés</label>
+    <div class="form-group form-check">
+      <input id="animaux" class="form-check-input" name="animaux" [(ngModel)]="annonce.animeaux" type="checkbox">
+      <label class="form-check-label" for="animaux">Animaux autorisés</label>
     </div>
-  
-    <div class="mb-3 form-check">
-      <input type="checkbox" id="fumeurs" class="form-check-input" formControlName="fumeurs">
-      <label for="fumeurs" class="form-check-label">Fumeurs autorisés</label>
+    <div class="form-group form-check">
+      <input id="fumeurs" class="form-check-input" name="fumeurs" [(ngModel)]="annonce.fumeurs" type="checkbox">
+      <label class="form-check-label" for="fumeurs">Fumeurs autorisés</label>
     </div>
-  
-    <div class="mb-3">
-      <label for="adresse" class="form-label">Adresse:</label>
-      <input type="text" id="adresse" class="form-control" formControlName="adresse">
+    <div class="form-group">
+      <label for="adresse">Adresse</label>
+      <textarea id="adresse" class="form-control" name="adresse" [(ngModel)]="annonce.adresse" required></textarea>
     </div>
-  
-    <div class="mb-3">
-      <label for="caution" class="form-label">Caution:</label>
-      <input type="number" id="caution" class="form-control" formControlName="caution">
+    <div class="form-group">
+      <label for="caution">Caution (en €)</label>
+      <input id="caution" class="form-control" name="caution" [(ngModel)]="annonce.caution" type="number" required>
     </div>
-  
-    <button type="submit" class="btn btn-primary">Submit</button>
+    
+   <button type="submit" class="btn btn-primary">Create Annonce</button>
   </form>
-  
+</div>

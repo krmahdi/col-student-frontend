@@ -5,13 +5,17 @@ import { AnnoncdetailComponent } from './components/annoncdetail/annoncdetail.co
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CreateAnnonceComponent } from './create-annonce/create-annonce.component';
-
+import{MapComponentComponent} from './map-component/map-component.component'
 const routes: Routes = [
   { path: 'annonces', component: AnnoncesComponent},
   { path:'annonce/:id', component : AnnoncdetailComponent },
-  { path:'', redirectTo: 'create' ,pathMatch: 'full'},
+  { path:'', redirectTo: 'map' ,pathMatch: 'full'},
 {    path:'auth',
     component:RegisterPageComponent
+  },
+  {
+path:'map',
+component:MapComponentComponent
   },
   {path:'create',component:CreateAnnonceComponent},
 {  path:'acceuil',component:HomePageComponent

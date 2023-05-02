@@ -1,0 +1,18 @@
+
+  
+  .map-frame {
+    border: 2px solid black;
+    height: 100%;
+  }
+  
+  
+  .map-container {
+    display: grid;
+    grid-template-columns: 1fr 300px; /* adjust the second value to control the width of the filtering options */
+    gap: 20px;
+  }
+  
+  #map {
+    height: 500px;
+  }
+  
