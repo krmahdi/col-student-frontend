@@ -1,41 +1,41 @@
 <div class="container mt-3" *ngIf="isLoggedIn()">
   <h1>Créer une request</h1>
-  <form (ngSubmit)="onSubmit()" #annonceForm="ngForm" novalidate>
+  <form (ngSubmit)="onSubmit()"  [formGroup]="annonceForm"  novalidate>
     <div class="form-group">
       <label for="description">Description</label>
-      <textarea id="description" class="form-control" name="description" [(ngModel)]="annonce.description" required></textarea>
+      <textarea id="description" class="form-control" formControlName="description" required></textarea>
     </div>
     <div class="form-group">
       <label for="superficie">Superficie (en m²)</label>
-      <input id="superficie" class="form-control" name="superficie" [(ngModel)]="annonce.superficie" type="number" required>
+      <input id="superficie" class="form-control" formControlName="superficie"  type="number" required>
     </div>
     <div class="form-group">
       <label for="loyer">Loyer (en €)</label>
-      <input id="loyer" class="form-control" name="loyer" [(ngModel)]="annonce.loyer" type="number" required>
+      <input id="loyer" class="form-control" formControlName="loyer"  required>
     </div>
     <div class="form-group">
       <label for="nbChambre">Nombre de chambres</label>
-      <input id="nbChambre" class="form-control" name="nbChambre" [(ngModel)]="annonce.nbChambre" type="number" required>
+      <input id="nbChambre" class="form-control" formControlName="nbChambre"  type="number" required>
     </div>
     <div class="form-group">
       <label for="nbPersonne">Nombre de personnes</label>
-      <input id="nbPersonne" class="form-control" name="nbPersonne" [(ngModel)]="annonce.nbPersonne" type="number" required>
+      <input id="nbPersonne" class="form-control" formControlName="nbPersonne"  type="number" required>
     </div>
-    <div class="form-group form-check">
-      <input id="animaux" class="form-check-input" name="animaux" [(ngModel)]="annonce.animeaux" type="checkbox">
+    <!-- <div class="form-group form-check">
+      <input id="animaux" class="form-check-input" formControlName="animaux" type="checkbox">
       <label class="form-check-label" for="animaux">Animaux autorisés</label>
     </div>
     <div class="form-group form-check">
-      <input id="fumeurs" class="form-check-input" name="fumeurs" [(ngModel)]="annonce.fumeurs" type="checkbox">
+      <input id="fumeurs" class="form-check-input" formControlName="fumeurs" type="checkbox">
       <label class="form-check-label" for="fumeurs">Fumeurs autorisés</label>
-    </div>
+    </div> -->
     <div class="form-group">
       <label for="adresse">Adresse</label>
-      <textarea id="adresse" class="form-control" name="adresse" [(ngModel)]="annonce.adresse" required></textarea>
+      <textarea id="adresse" class="form-control" formControlName="adresse"  required></textarea>
     </div>
     <div class="form-group">
       <label for="caution">Caution (en €)</label>
-      <input id="caution" class="form-control" name="caution" [(ngModel)]="annonce.caution" type="number" required>
+      <input id="caution" class="form-control" formControlName="caution" type="number" required>
     </div>
     
    <button type="submit" class="btn btn-primary">Create Annonce</button>
