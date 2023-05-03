@@ -1,5 +1,5 @@
 export interface Annonce {
-    idAnnonce: number ,
+    idAnnonce?: number ,
     description: string,
     superficie: number,
     loyer: number,
@@ -9,11 +9,12 @@ export interface Annonce {
     fumeurs: boolean,
     adresse: string,
     caution: number,
-    supprimee: boolean,
+    supprimee?: boolean,
     longitude: number,
     altitude: number,
     user: any,
-    evaluations: any,
-    photos: any,
-    signalements: any
+    evaluations?: any,
+    photos?: any,
+    signalements?:any,
+   
 }

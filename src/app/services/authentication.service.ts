@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Register } from '../interfaces/register.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -37,21 +38,9 @@ export class AuthenticationService {
 
   register(firstname: string,lastname:string, password: string, email: string): Observable<boolean> {
     return this.http.post<any>(`${this.apiUrl}/register`, { firstname: firstname,lastname:lastname, email: email, password: password })
-      .pipe(
-        map(response => {
-          // registration successful if there's a jwt token in the response
-          const token = response.token;
-          if (token) {
-            // store username and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify({ email: email, token: token }));
-            return true;
-          } else {
-            return false;
-          }
-        })
-      );
+      
   }
-
+  
   isLoggedIn(): boolean {
     // check if user is logged in based on whether the currentUser object exists in local storage
     return !!localStorage.getItem('currentUser');
