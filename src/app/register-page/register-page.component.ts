@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import {Jwt} from 'jsonwebtoken';
+import { Register } from '../interfaces/register.interface';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register-page',
@@ -10,15 +12,21 @@ import {Jwt} from 'jsonwebtoken';
 })
 
 export class RegisterPageComponent {
-
+  registerForm: FormGroup;
+registerUser:Register={
+  firstname:'',
+  lastname:'',
+  email:'',
+  password:'',
+ numTel:''
+};
   username: string;
   password: string;
   errorMessage: string;
-  firstname:string;
-  lastname:string;
-  email:string;
 token:string;
-  constructor(private authenticationService: AuthenticationService,private route: Router) { }
+  constructor(private authenticationService: AuthenticationService,private route: Router,    private formBuilder: FormBuilder    ) {
+    this.createForm()
+   }
   ngOnInit() {
    
   }
@@ -38,7 +46,13 @@ token:string;
       })
   }
   register(){
-    this.authenticationService.register(this.firstname,this.lastname,this.password,this.email)
+    this.registerUser.firstname = this.registerForm.value.firstname;
+    this.registerUser.lastname = this.registerForm.value.lastname;
+    this.registerUser.numTel = this.registerForm.value.numTel;
+    this.registerUser.email = this.registerForm.value.email;
+    this.registerUser.password = this.registerForm.value.password;
+   
+    this.authenticationService.register(this.registerUser)
      .subscribe(
       () => {
         console.log('Registration successful');
@@ -49,6 +63,19 @@ token:string;
       }
     );
   }
+  createForm() {
+
+    this.registerForm = this.formBuilder.group({
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      numTel: ['', Validators.required]
+
+
+});
+}
+
 
 
 }

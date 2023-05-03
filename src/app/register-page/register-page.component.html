@@ -25,31 +25,40 @@
 				<div class="hr"></div>
 				
 			</div>
+
+
 			<div class="sign-up-form">
+				<form (ngSubmit)="register()"  [formGroup]="registerForm"  >
+				<div class="form-group">
+					<label for="firstname">firstname</label>
+					<input id="firstname" class="form-control" formControlName="firstname" type="string" required>
+				  </div>
+				  <div class="form-group">
+					<label for="lastname">lastname</label>
+					<input id="lastname" class="form-control" formControlName="lastname"  type="string" required>
+				  </div>
+				  <div class="form-group">
+					<label for="email">email</label>
+					<input id="email" class="form-control"formControlName="email" type="string" required>
+				  </div>
+				  <div class="form-group">
+					<label for="numTel">Phone number</label>
+					<input id="numTel" class="form-control" formControlName="numTel"  required>
+				  </div>
+				  <div class="form-group ">
+					<label for="password">password</label>
+					<input id="password" class="form-control"  formControlName="password" type="string">
+				  </div>
 				<div class="group">
-					<label for="user" class="label" [(ngModel)]="firstname">firstname</label>
-					<input id="user" type="text" class="input" placeholder="Create your firstname">
-				</div>
-				<div class="group">
-					<label for="user" class="label" [(ngModel)]="lastname">lastname</label>
-					<input id="user" type="text" class="input" placeholder="Create your lastname">
-				</div>
-				<div class="group">
-					<label for="pass" class="label" [(ngModel)]="email">Email Address</label>
-					<input id="pass" type="text" class="input" placeholder="Enter your email address">
-				</div>
-				<div class="group">
-					<label for="pass" class="label" [(ngModel)]="password">Password</label>
-					<input id="pass" type="password" class="input" data-type="password" placeholder="Create your password">
-				</div>
-				<div class="group">
-					<input type="submit" class="button" value="Sign Up" (click)="register()">
+					<input type="submit" class="button" value="Sign Up" >
 				</div>
 				<div class="hr"></div>
 				<div class="foot">
 					<label for="tab-1">Already Member?</label>
 				</div>
+			</form>
 			</div>
+
 		</div>
 	</div>
 </div>   
