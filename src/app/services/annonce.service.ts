@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Annonce } from '../interfaces/annonce.interface';
 import { AuthenticationService } from './authentication.service';
+import { AnnonceFilter } from '../interfaces/anoonceFilter.interface';
 
 @Injectable({providedIn: 'root'})
 export class AnnonceService {
@@ -29,7 +30,7 @@ export class AnnonceService {
     return this.http.get<Annonce[]>(url);
   }
 
-  filter(annonce: Annonce): Observable<Annonce[]> {
+  filter(annonce: AnnonceFilter): Observable<Annonce[]> {
     const url = `${this.apiUrl}/filter`;
     return this.http.get<Annonce[]>(url, { responseType: 'json' });
   }

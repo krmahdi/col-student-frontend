@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Query } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Register } from '../interfaces/register.interface';
+import { Ecole } from '../interfaces/ecole.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,12 @@ export class AuthenticationService {
         })
       );
   }
-
+getEcole(name:string ):Observable<any>{
+return this.http.get<any>(`${this.apiUrl}/ecoles/name?q=${name}`)
+}
+getAllEcole():Observable<Ecole[]>{
+  return this.http.get<any>(`${this.apiUrl}/ecoles`)
+}
   logout(): void {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
@@ -57,4 +62,5 @@ export class AuthenticationService {
 getSignedinUser() {
   return sessionStorage.getItem('user') as string;
 }
+
 }

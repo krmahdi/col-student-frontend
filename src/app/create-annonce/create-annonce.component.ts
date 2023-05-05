@@ -10,6 +10,10 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./create-annonce.component.css'],
 })
 export class CreateAnnonceComponent {
+
+  // array to store the uploaded photos
+  uploadedImages: string[] = [];
+  previewImage:string;
   latitude: number;
   longitude: number;
 
@@ -52,6 +56,7 @@ export class CreateAnnonceComponent {
       console.log(`Latitude: ${this.latitude}, Longitude: ${this.longitude}`);
     });
   }
+  
 
   createForm() {
 
@@ -61,7 +66,7 @@ export class CreateAnnonceComponent {
       loyer: ['', Validators.required],
       nbChambre: ['', Validators.required],
       nbPersonne: ['', Validators.required],
-      animeaux: [''],
+      animeaux: [false],
       fumeurs: [''],
       adresse: ['', Validators.required],
       caution: [''],
@@ -99,4 +104,15 @@ export class CreateAnnonceComponent {
   isLoggedIn() {
     return this.authenticationService.isLoggedIn();
   }
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewImage = reader.result as string;
+      this.uploadedImages.push(this.previewImage);
+      this.previewImage = 'null'; // Push the base64 data to the array
+    };
+    reader.readAsDataURL(file);
+  }
+  
 }

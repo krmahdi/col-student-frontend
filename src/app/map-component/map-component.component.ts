@@ -5,6 +5,7 @@ import { AnnonceService } from '../services/annonce.service';
 import { Annonce } from '../interfaces/annonce.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import{AnnonceFilter} from '../interfaces/anoonceFilter.interface'
 @Component({
   selector: 'app-root',
   templateUrl: './map-component.component.html',
@@ -69,6 +70,18 @@ export class MapComponentComponent implements OnInit {
 
   
   }
-
- 
+  filter: AnnonceFilter = {
+    superficie: 1000,
+    loyer: 1000,
+    nbChambre: 1000,
+    nbPersonne: 1000,
+    animeaux: false,
+    fumeurs: false
+  };
+  filterAnnonces() {
+    this.annonceService.filter(this.filter)
+      .subscribe(annonces => {this.annonces = annonces;console.log(this.annonces)
+      });
+  }
+  
 }
