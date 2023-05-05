@@ -13,7 +13,7 @@ import { Annonce } from 'src/app/interfaces/annonce.interface';
 export class AnnoncesComponent implements OnInit {
   response: Annonce[];
   
-
+term:string
   constructor(private annonceService: AnnonceService) { }
   ngOnInit(): void {
     this.annonceService.getAnnonces().subscribe(

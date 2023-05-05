@@ -1,33 +1,9 @@
 <div class="row">
   <div class="col-md-4" style='border: 1px solid red'>
-    <form (submit)="filterAnnonces()">
-      <div>
-        <label for="superficie">Superficie:</label>
-        <input type="number" name="superficie" [(ngModel)]="filter.superficie">
-      </div>
-      <div>
-        <label for="loyer">Loyer:</label>
-        <input type="number" name="loyer" [(ngModel)]="filter.loyer">
-      </div>
-      <div>
-        <label for="nbChambre">Nombre de chambres:</label>
-        <input type="number" name="nbChambre" [(ngModel)]="filter.nbChambre">
-      </div>
-      <div>
-        <label for="nbPersonne">Nombre de personnes:</label>
-        <input type="number" name="nbPersonne" [(ngModel)]="filter.nbPersonne">
-      </div>
-      <div>
-        <label for="animeaux">Animaux acceptés:</label>
-        <input type="checkbox" name="animeaux" [(ngModel)]="filter.animeaux">
-      </div>
-      <div>
-        <label for="fumeurs">Fumeurs non acceptés:</label>
-        <input type="checkbox" name="fumeurs" [(ngModel)]="filter.fumeurs">
-      </div>
-      <button type="submit">Filtrer</button>
-    </form>
-    
+    <app-filter
+        [list]="filterList" 
+        (onFilterChange)="filterChange($event)" >
+     </app-filter>
   </div>
 
   <div class="col-md-8" style='border: 1px solid red '>

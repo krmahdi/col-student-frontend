@@ -17,6 +17,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { MapComponentComponent } from './map-component/map-component.component'
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
+import { GenericListFilterModule } from 'generic-list-filter';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { LeafletModule } from "@asymmetrik/ngx-leaflet";
     NgxStarRatingModule,
     FormsModule,
     ReactiveFormsModule,
-    LeafletModule,
+    LeafletModule,Ng2SearchPipeModule,
+    GenericListFilterModule
+    
   ],
   providers: [
     
