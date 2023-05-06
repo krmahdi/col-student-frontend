@@ -1,12 +1,18 @@
+<app-filter
+[list]="filterList" 
+(onFilterChange)="filterChange($event)" >
+</app-filter>
 <div class="container text-center">
     <input type="text" [(ngModel)]="term">
+  
+
     <div class="row ">
-        <div class="col-md-4 mb-4" *ngFor="let annonce of response  |filter:term let i = index">
+        <div class="col-md-4 mb-4" *ngFor="let annonce of response  |filter:term ">
             <img [src]="annonce.photos[0]?.pathPhoto" height="250" width="250" >
             <div>superficie : {{ annonce.superficie }} m²</div>
             <div>loyer : {{ annonce.loyer }} TND</div>
             <div>adresse : {{ annonce.adresse }}</div>
-            <div>ecole : {{ annonce.user.ecole.nomEcole }}</div>
+          
             <button [routerLink]="['/annonce', annonce.idAnnonce]" type="button" class="button btn btn-primary">View</button>            
         </div>
     </div>

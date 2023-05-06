@@ -95,32 +95,7 @@ export class MapComponentComponent implements OnInit {
 
   
   }
-  filterChange(appliedfilters:any) {
-    if (!appliedfilters) {
-      console.log('The applied filters object is undefined.');
-      return;
-    }else{
-     const animeaux=appliedfilters?.appliedFilterValues.animeaux;
-     const  fumeurs=appliedfilters?.appliedFilterValues.fumeurs;
-      const loyer=appliedfilters?.appliedFilterValues.loyer;
-      const nbChambre=appliedfilters?.appliedFilterValues.nbChambre;
-      const nbPersonne=appliedfilters?.appliedFilterValues.nbPersonne;
-     const superficie=appliedfilters?.appliedFilterValues.superficie;
-  console.log(animeaux,fumeurs,loyer,nbChambre,nbPersonne,superficie)
- this.annonceFilter.animeaux=animeaux;
-  this.annonceFilter.fumeurs=fumeurs;
-  this.annonceFilter.loyer=parseFloat(loyer);
-  this.annonceFilter.nbChambre=nbChambre;
-  this.annonceFilter.nbPersonne=nbPersonne;
-  this.annonceFilter.superficie=superficie;
- this.annonceService.filter(this.annonceFilter).subscribe((annonces) => {
-        this.annonces = annonces;
-        console.log(this.annonces);
-       
-      });}
-    
-   
-}
+ 
 
  /* createForm() {
 
