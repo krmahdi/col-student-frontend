@@ -42,53 +42,40 @@ term:string
    
     
   }
-  getAllAnnonce(){
 
-    this.annonceService.getAnnonces().subscribe(
-      (results: Annonce[]) => {
-        console.log(results);
-        this.response = results;
-      }
-    );
-    return this.response;
-  }
- 
-
-  filterChange(appliedfilters:any) {
- 
-     this.annonceFilter.animeaux=appliedfilters?.appliedFilterValues.animeaux;
-     this.annonceFilter.fumeurs=appliedfilters?.appliedFilterValues.fumeurs;
-     this.annonceFilter.loyer=appliedfilters?.appliedFilterValues.loyer;
-     this.annonceFilter.nbChambre=appliedfilters?.appliedFilterValues.nbChambre;
-     this.annonceFilter.nbPersonne=appliedfilters?.appliedFilterValues.nbPersonne;
-     this.annonceFilter.superficie=appliedfilters?.appliedFilterValues.superficie;
-  //console.log(animeaux,fumeurs,loyer,nbChambre,nbPersonne,superficie)
- if(typeof(this.annonceFilter.animeaux)!==undefined){
-  this.annonceService.getAnnonces().subscribe(
-    (results: Annonce[]) => {
-           this.response = results;
-           this.response=this.response.filter(item=>item.animeaux==this.annonceFilter.animeaux);
-            
+  filterChange(appliedfilters: any) {
+    this.annonceFilter.animeaux = appliedfilters?.appliedFilterValues.animeaux;
+    this.annonceFilter.fumeurs = appliedfilters?.appliedFilterValues.fumeurs;
+    this.annonceFilter.loyer = appliedfilters?.appliedFilterValues.loyer;
+    this.annonceFilter.nbChambre = appliedfilters?.appliedFilterValues.nbChambre;
+    this.annonceFilter.nbPersonne = appliedfilters?.appliedFilterValues.nbPersonne;
+    this.annonceFilter.superficie = appliedfilters?.appliedFilterValues.superficie;
+  
+    // Make a copy of the original results array
+    const originalResults = [...this.response];
+  
+    // Apply filters to the copied array
+    if (typeof this.annonceFilter.animeaux !== "undefined") {
+      this.response = originalResults.filter(item => item.animeaux == this.annonceFilter.animeaux);
     }
-  ); }
- if(typeof(this.annonceFilter.fumeurs)!==undefined){
-  this.response=this.response.filter(item=>item.fumeurs==this.annonceFilter.fumeurs);
- }
- if(this.annonceFilter.loyer){
-  this.response=this.response.filter(item=>item.loyer==this.annonceFilter.loyer);
- }
- if(this.annonceFilter.nbChambre){
-  this.response=this.response.filter(item=>item.nbChambre==this.annonceFilter.nbChambre);
- }
- if(this.annonceFilter.nbPersonne){
-  this.response=this.response.filter(item=>item.nbPersonne==this.annonceFilter.nbPersonne);
- }
- if(this.annonceFilter.superficie){
-  this.response=this.response.filter(item=>item.superficie==this.annonceFilter.superficie);
- }
+    if (typeof this.annonceFilter.fumeurs !== "undefined") {
+      this.response = this.response.filter(item => item.fumeurs == this.annonceFilter.fumeurs);
+    }
+    if (this.annonceFilter.loyer) {
+      this.response = this.response.filter(item => item.loyer == this.annonceFilter.loyer);
+    }
+    if (this.annonceFilter.nbChambre) {
+      this.response = this.response.filter(item => item.nbChambre == this.annonceFilter.nbChambre);
+    }
+    if (this.annonceFilter.nbPersonne) {
+      this.response = this.response.filter(item => item.nbPersonne == this.annonceFilter.nbPersonne);
+    }
+    if (this.annonceFilter.superficie) {
+      this.response = this.response.filter(item => item.superficie == this.annonceFilter.superficie);
+    }
+  }
   
-}
-  
+
 }
   
 
