@@ -19,7 +19,7 @@ import { MapComponentComponent } from './map-component/map-component.component'
 import { LeafletModule } from "@asymmetrik/ngx-leaflet";
 import { GenericListFilterModule } from 'generic-list-filter';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +36,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
   ],
   imports: [
     BrowserModule,
+    TabsModule,
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,

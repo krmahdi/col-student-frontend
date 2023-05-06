@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AnnonceService } from '../services/annonce.service';
 import { Annonce } from 'src/app/interfaces/annonce.interface';
 import { AuthenticationService } from '../services/authentication.service';
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
 @Component({
   selector: 'app-create-annonce',
@@ -16,7 +17,12 @@ export class CreateAnnonceComponent {
   previewImage:string;
   latitude: number;
   longitude: number;
-
+  @ViewChild('formTabs') formTabs?: TabsetComponent
+  selectTab(tabId: number) {
+    if (this.formTabs?.tabs[tabId]) {
+      this.formTabs.tabs[tabId].active = true;
+    }
+  }
   annonceForm: FormGroup;
   request: Annonce[];
   annonce: Annonce = {
@@ -37,7 +43,7 @@ export class CreateAnnonceComponent {
     photos: null,
     signalements: null,
     supprimee: false,
-  };
+  }; 
   currentUser: any;
   constructor(
     private formBuilder: FormBuilder,
