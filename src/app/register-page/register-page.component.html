@@ -51,6 +51,18 @@
 					<label for="password">password</label>
 					<input id="password" class="form-control"  formControlName="password" type="string">
 				  </div>
+				<div class="form-group">
+					<label>
+						Choose a university:
+						<select formControlName="nomEcole">
+						  <option *ngFor="let ecole of response" [value]="ecole.nomEcole">{{ ecole.nomEcole }}</option>
+						</select>
+					  </label> 
+					
+
+				</div>
+					
+
 				<div class="group">
 					<input type="submit" class="button" value="Sign Up" >
 				</div>

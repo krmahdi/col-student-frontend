@@ -16,5 +16,6 @@ export interface Annonce {
     evaluations?: any,
     photos?: any,
     signalements?:any,
+    email?:any
    
 }

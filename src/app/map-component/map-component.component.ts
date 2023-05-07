@@ -1,12 +1,11 @@
-
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { AnnonceService } from '../services/annonce.service';
 import { Annonce } from '../interfaces/annonce.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import{AnnonceFilter} from '../interfaces/anoonceFilter.interface'
-import { FormGroup ,FormBuilder,Validators} from '@angular/forms';
+import { AnnonceFilter } from '../interfaces/anoonceFilter.interface';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -21,25 +20,25 @@ export class MapComponentComponent implements OnInit {
     lon: 10.3106223,
   };
   annonces: Annonce[] = [];
-  annonceFilter:AnnonceFilter={
+  annonceFilter: AnnonceFilter = {
     superficie: 0,
     loyer: 0,
     nbChambre: 0,
     nbPersonne: 0,
     animeaux: false,
     fumeurs: false,
-  }
+  };
   popupText = 'Some popup text';
   filterList = {
-    loyer : [100, 150, 200, 250,300,350,400,450,500,550,600],
-    superficie: [40, 45, 50,55,60,65,70],
-    nbChambre : [0,1, 2,3,4,],
-    nbPersonne : [0,1, 2, 3, 4, 5, 6],
-    animeaux : [true,false],
-    fumeurs :  [true,false],
+    loyer: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600],
+    superficie: [40, 45, 50, 55, 60, 65, 70],
+    nbChambre: [0, 1, 2, 3, 4],
+    nbPersonne: [0, 1, 2, 3, 4, 5, 6],
+    animeaux: [true, false],
+    fumeurs: [true, false],
 
     //here you can add as many filters as you want.
-    };  
+  };
   markerIcon = {
     icon: L.icon({
       iconSize: [25, 41],
@@ -64,10 +63,9 @@ export class MapComponentComponent implements OnInit {
   };
   constructor(
     private annonceService: AnnonceService,
-    private http: HttpClient,  private formBuilder: FormBuilder,
-  ) {
- 
-  }
+    private http: HttpClient,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit() {
     const mapContainer = L.DomUtil.get('map') || '';
@@ -81,23 +79,32 @@ export class MapComponentComponent implements OnInit {
   initMarkers() {
     this.annonceService.getAnnonces().subscribe((data) => {
       data.map((annonce) => {
-        const popupInfo = `<b style="color: red; background-color: white">${annonce.description}</b>`;
-       
-       
-       
-       
-       
+     
+
+        const popupInfo = `<div class="container text-center">
+        <div class="row ">
+        <div class="col-md-12 mb-2 ">
+        <div class=" rounded-2 my-4 w-auto">        
+         <img class="rounded-1" src=${annonce.photos[0]?.pathPhoto} height="250" width="250" >
+        </div>
+
+            <div>superficie : ${annonce.superficie} m²</div>
+             <div>loyer : ${annonce.loyer} TND</div>
+              <div>adresse : ${annonce.adresse}</div>
+        <div>${annonce.description}</div>
+        </div>
+        </div>
+        </div>
+        `;
+
         return L.marker([annonce.altitude, annonce.longitude], this.markerIcon)
           .addTo(this.map)
           .bindPopup(popupInfo);
       });
     });
-
-  
   }
- 
 
- /* createForm() {
+  /* createForm() {
 
     this.filterForm = this.formBuilder.group({
      // description: ['', Validators.required],

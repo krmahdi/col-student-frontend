@@ -3,6 +3,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Register } from '../interfaces/register.interface';
+import {Ecole} from '../interfaces/ecole.interface'
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html',
@@ -10,7 +11,9 @@ import { Register } from '../interfaces/register.interface';
 })
 export class RegisterPageComponent {
   registerForm: FormGroup;
-
+  selectedEcole: Ecole;
+  response: Ecole[]=[]
+  term:string='';
   username: string;
   password: string;
   errorMessage: string;
@@ -19,7 +22,7 @@ export class RegisterPageComponent {
     lastname: '',
     email: '',
     password: '',
-    idEcole: 0,
+    id: 0,
     numTel: '',
   };
   token: string;
@@ -30,7 +33,11 @@ export class RegisterPageComponent {
   ) {
     this.RegisterForm();
   }
-  ngOnInit() {}
+  ngOnInit() {
+    this.authenticationService.getAllEcole().subscribe((ecole:Ecole[])=>{ console.log(ecole);this.response=ecole;
+        
+    });
+  }
 
   login() {
     //const authenticationRequest = { username: this.username, password: this.password };
@@ -42,25 +49,35 @@ export class RegisterPageComponent {
         sessionStorage.setItem('token', 'HTTP_TOKEN ' + this.token);
         return;
       },
-      (error) => {
+     
+     /* (error) => {
         this.errorMessage = 'Invalid credentials';
-      }
+      }*/
     );
+   
   }
   register() {
+    const selectedEcole = this.response.find(ecole => ecole.nomEcole === this.registerForm.value.nomEcole);
+    const idEcole = selectedEcole ? selectedEcole.idEcole : null;
+    console.log('Selected Ecole ID:', idEcole);
     this.userRegistered.firstname = this.registerForm.value.firstname;
     this.userRegistered.lastname = this.registerForm.value.lastname;
     this.userRegistered.email = this.registerForm.value.email;
     this.userRegistered.password = this.registerForm.value.password;
-    this.authenticationService.register(this.userRegistered).subscribe(
+   this.userRegistered.numTel=this.registerForm.value.numTel;
+if(idEcole){
+  this.userRegistered.id=idEcole;
+
+}   this.authenticationService.register(this.userRegistered).subscribe(
+     
       () => {
         console.log('Registration successful');
         // Redirect to login page or display success message
         // this.route.navigate(['/annonces']);
       },
-      (error) => {
+      /*(error) => {
         this.errorMessage = error.error.message;
-      }
+      }*/
     );
   }
   RegisterForm() {
@@ -70,7 +87,11 @@ export class RegisterPageComponent {
       email: ['', Validators.required],
       password: ['', Validators.required],
       numTel: ['', Validators.required],
-      idEcole: [''],
+     nomEcole: ['',Validators.required],
     });
   }
+  submit(ecole: Ecole) {
+    // Send the selected university to the server
+  }
+  
 }

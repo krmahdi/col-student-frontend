@@ -3,5 +3,5 @@ export interface Register{
     lastname:string,
     email:string,
     password:string,
-   numTel:string,idEcole:number
+   numTel:string,id:number
 }
