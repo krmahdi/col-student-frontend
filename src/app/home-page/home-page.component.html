@@ -1,3 +1,76 @@
 
-<app-navbar></app-navbar>
- 
+<body>
+<header id="header" class="fixed-top">
+  <div class="container d-flex align-items-center">
+
+    <h1 class="logo me-auto"><a ><span>Door</span>Match</a></h1>
+    <!-- Uncomment below if you prefer to use an image logo -->
+    <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+    <nav id="navbar" class="navbar order-last order-lg-0">
+      <ul>
+        <li><a  class="active">Home</a></li>
+
+        <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="team.html">Team</a></li>
+                         
+          
+          </ul>
+        </li>
+
+        <li><a [routerLink]="['/map']">Map</a></li>
+        <li><a [routerLink]="['/create']">Create</a></li>
+        <li><a [routerLink]="['/auth']">Register</a></li>
+
+      </ul>
+    </nav><!-- .navbar -->
+  </div>
+
+  </header>
+    <section id="hero">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  
+        <div class="carousel-inner" role="listbox">
+  
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url('src/assets/4.jpg');">
+            <div class="carousel-container">
+              <div class="carousel-content animate__animated animate__fadeInUp">
+                <h2>Welcome to <span>DoorMatch</span></h2>
+                <p></p>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Slide 2 -->
+          
+  
+  
+        </div>
+  
+      </div>
+    </section>
+    <div class="container text-center">
+      <input type="text" [(ngModel)]="term">
+    
+  
+      <div class="row ">
+          <div class="col-md-4 mb-4" *ngFor="let annonce of response  |filter:term">
+              <img [src]="annonce.photos[0]?.pathPhoto" height="250" width="250" >
+              <div>superficie : {{ annonce.superficie }} m²</div>
+              <div>loyer : {{ annonce.loyer }} TND</div>
+              <div>adresse : {{ annonce.adresse }}</div>
+              <div>{{ annonce.date | elapsedTime }}</div>
+  
+              <button [routerLink]="['/annonce', annonce.idAnnonce]" type="button" class="button btn btn-primary">View</button>            
+          </div>
+
+
+      </div>
+  </div>
+  
+  <button [routerLink]="['/annonces']" type="button" class="button btn btn-primary">Show More </button>            
+
+</body>

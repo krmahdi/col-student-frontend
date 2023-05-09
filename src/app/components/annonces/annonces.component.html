@@ -2,18 +2,40 @@
 [list]="filterList" 
 (onFilterChange)="filterChange($event)" >
 </app-filter>
+
+<div>
+    <select [(ngModel)]="sortField">
+      <option value="">--Select a field to sort by--</option>
+      <option value="date">Date</option>
+      <option value="loyer">Loyer</option>
+      <option value="superficie">Superficie</option>
+      <option value="nbChambre">Nombre de chambres</option>
+    </select>
+    <select [(ngModel)]="sortOrder">
+      <option value="">--Select a sort order--</option>
+      <option value="asc">Ascendant</option>
+      <option value="desc">Descendant</option>
+    </select>
+  </div>
+  
+
+
+  
+  
 <div class="container text-center">
     <input type="text" [(ngModel)]="term">
   
-
+  
     <div class="row ">
-        <div class="col-md-4 mb-4" *ngFor="let annonce of response  |filter:term ">
+        <div class="col-md-4 mb-4" *ngFor="let annonce of pagedItems  |filter:term |sort:(sortField ? sortField : ''):(sortOrder ? sortOrder : '')">
             <img [src]="annonce.photos[0]?.pathPhoto" height="250" width="250" >
             <div>superficie : {{ annonce.superficie }} m²</div>
             <div>loyer : {{ annonce.loyer }} TND</div>
             <div>adresse : {{ annonce.adresse }}</div>
-          
+            <div>{{ annonce.date | elapsedTime }}</div>
+
             <button [routerLink]="['/annonce', annonce.idAnnonce]" type="button" class="button btn btn-primary">View</button>            
         </div>
     </div>
+    <pagination [totalItems]="response.length" [(ngModel)]="currentPage" [itemsPerPage]="pageSize"></pagination>
 </div>

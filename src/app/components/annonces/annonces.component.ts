@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { AnnonceService } from 'src/app/services/annonce.service';
 import { Annonce } from 'src/app/interfaces/annonce.interface';
 import {AnnonceFilter} from 'src/app/interfaces/anoonceFilter.interface';
-
 @Component({
   selector: 'app-annonces',
   templateUrl: './annonces.component.html',
@@ -11,6 +10,16 @@ import {AnnonceFilter} from 'src/app/interfaces/anoonceFilter.interface';
 })
 
 export class AnnoncesComponent implements OnInit {
+  pageSize = 6;
+  currentPage = 1;
+
+
+ sortField :string
+  sortOrder : string;
+
+  sortByDate: boolean = false;
+  sortBySuperficie: boolean = false;
+  desc: boolean = false; // define the 'desc' property
   response: Annonce[]=[]
   annonceFilter:AnnonceFilter={
     superficie: 0,
@@ -33,6 +42,9 @@ export class AnnoncesComponent implements OnInit {
 term:string
   constructor(private annonceService: AnnonceService) { }
   ngOnInit(): void {
+    this.sortField = '';
+  this.sortOrder = 'asc';
+
     this.annonceService.getAnnonces().subscribe(
       (results: Annonce[]) => {
         console.log(results);
@@ -74,10 +86,62 @@ term:string
       this.response = this.response.filter(item => item.superficie == this.annonceFilter.superficie);
     }
   }
+ 
   
+  dropdownOptions = [  { label: 'Date - Newest First', value: 'date_desc' },  { label: 'Date - Oldest First', value: 'date_asc' },  { label: 'Loyer - Low to High', value: 'loyer_asc' },  { label: 'Loyer - High to Low', value: 'loyer_desc' },  { label: 'Superfice - Small to Large', value: 'superfice_asc' },  { label: 'Superfice - Large to Small', value: 'superfice_desc' },  { label: 'NbChambre - Few to Many', value: 'nbChambre_asc' },  { label: 'NbChambre - Many to Few', value: 'nbChambre_desc' }];
+  onSortOptionSelected(value: string) {
+    switch (value) {
+      case 'date_desc':
+        this.sortField = 'date';
+        this.sortOrder = 'desc';
+        break;
+      case 'date_asc':
+        this.sortField = 'date';
+        this.sortOrder = 'asc';
+        break;
+      case 'loyer_asc':
+        this.sortField = 'loyer';
+        this.sortOrder = 'asc';
+        break;
+      case 'loyer_desc':
+        this.sortField = 'loyer';
+        this.sortOrder = 'desc';
+        break;
+      case 'superfice_asc':
+        this.sortField = 'superfice';
+        this.sortOrder = 'asc';
+        break;
+      case 'superfice_desc':
+        this.sortField = 'superfice';
+        this.sortOrder = 'desc';
+        break;
+      case 'nbChambre_asc':
+        this.sortField = 'nbChambre';
+        this.sortOrder = 'asc';
+        break;
+      case 'nbChambre_desc':
+        this.sortField = 'nbChambre';
+        this.sortOrder = 'desc';
+        break;
+      default:
+        this.sortField = '';
+        this.sortOrder = '';
+        break;
+    }
+  }
+  
+  calculatePagedItems(): Annonce[] {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.response.slice(startIndex, endIndex);
+  }
+  
+  get pagedItems(): Annonce[] {
+    return this.calculatePagedItems();
 
 }
   
 
+}
 
 

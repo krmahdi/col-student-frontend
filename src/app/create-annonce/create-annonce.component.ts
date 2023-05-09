@@ -43,6 +43,8 @@ export class CreateAnnonceComponent {
     photos: null,
     signalements: null,
     supprimee: false,
+    date_dispo:new Date(),
+    transport:'',date:new Date()
   }; 
   currentUser: any;
   constructor(
@@ -79,6 +81,8 @@ export class CreateAnnonceComponent {
       longitude: [this.longitude],
       altitude: [this.latitude],
       user: this.currentUser.id,
+      date:[''],
+      transport:['']
     });
   }
 
@@ -101,7 +105,9 @@ export class CreateAnnonceComponent {
     this.annonce.fumeurs = this.annonceForm.value.fumeurs;
     this.annonce.adresse = this.annonceForm.value.adresse;
     this.annonce.caution = this.annonceForm.value.caution;
-
+    this.annonce.date_dispo = this.annonceForm.value.date;
+    this.annonce.transport = this.annonceForm.value.transport;
+    this.annonce.date = new Date();
     this.annonceService.createAnnonce(this.annonce).subscribe(() => {
       console.log('success');
     });

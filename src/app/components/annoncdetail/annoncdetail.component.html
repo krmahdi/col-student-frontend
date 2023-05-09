@@ -86,8 +86,14 @@
                   <h6> {{ response.nbChambre }} </h6>
                 </div>
               </div>
+              
             </div>
-          
+            <div class="row mb-3">
+              <p class="text-secondary mb-0 mt-0">Disponible le</p>
+              <div >
+                <h6> {{ response.date_dispo | date:'MMM d, y' }} </h6>
+              </div>
+            </div>
            
           <div class="row mb-3">
             <div class="col">
@@ -110,7 +116,18 @@
           </div>		
 			</div>
     </div>
-
+ 
+    <div>
+      <rating [max]="10" [(ngModel)]="y" [customTemplate]="tt"></rating>
+      <div class="card">
+        <pre class="card-block card-header" style="margin:15px 0;"> <b>(<i>Rate:</i> {{y}})</b> </pre>
+      </div>
+      <ng-template #tt let-i="index" let-v="value">
+        <button class="btn btn-{{i < v ? 'warning' : 'default'}}">
+          {{i < v ? '&#9733;' : '&#9734;'}}
+        </button>
+      </ng-template>
+    </div>
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="card">

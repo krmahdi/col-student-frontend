@@ -18,6 +18,7 @@ import { NgxStarRatingComponent } from 'ngx-star-rating/public-api';
   styleUrls: ['./annoncdetail.component.css'],
 })
 export class AnnoncdetailComponent implements OnInit {
+  
   response: Annonce;
   faSmokingBan = faSmokingBan;
   faSmoking = faSmoking;
@@ -47,4 +48,6 @@ export class AnnoncdetailComponent implements OnInit {
         });
     });
   }
+  x = 5;
+  y = 2;
 }
