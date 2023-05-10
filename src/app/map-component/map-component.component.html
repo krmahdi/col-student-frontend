@@ -1,12 +1,19 @@
-<div class="row">
-  <div class="col-md-4" style='border: 1px solid red'>
-   
+
+<div class="row my-4 mx-4">
+
+  <div class="col-md-2 border rounded-1">
+    <label class="my-4" for="ecoleInput">Entrez le nom de l'école à filtrer :</label>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class=" d-flex justify-content-between" >
+      <input type="text" class="form-control w-75" placeholder="recherche ..." id="ecoleInput" formControlName="ecoleInput" aria-describedby="basic-addon1">
+      <button type="submit" class="btn btn-success">Filter</button>
+    </form>
   </div>
 
-  <div class="col-md-8" style='border: 1px solid red '>
-    <div id="map"></div>
+  <div class="col-md-10  border rounded-1" >
+    <div class="my-4" id="map"></div>
   </div>
   <div>
+   
     <!-- <input ngForm="searchQuery" ngModel="search"> -->
   </div>
 </div>

@@ -3,24 +3,24 @@
 		<div class="card">
 <div class="login-box">
 	<div class="login-snip">
-		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Login</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Se connecter</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">S'inscrire</label>
 		<div class="login-space">
 			<div class="login">
 				<div class="group">
 					<label for="user" class="label" >E-mail</label>
-					<input id="user" type="text" class="input"  placeholder="Enter your email" [(ngModel)]="username">
+					<input id="user" type="text" class="input"  placeholder="Entrez votre email" [(ngModel)]="username">
 				</div>
 				<div class="group">
-					<label for="pass" class="label">Password</label>
-					<input id="pass" type="password" class="input" data-type="password" placeholder="Enter your password" [(ngModel)]="password">
+					<label for="pass" class="label">Mot de passe</label>
+					<input id="pass" type="password" class="input" data-type="password" placeholder="Entrez votre mot de passe" [(ngModel)]="password">
 				</div>
 				<div class="group">
 					<input id="check" type="checkbox" class="check" checked>
-					<label for="check"><span class="icon"></span> Keep me Signed in</label>
+					<label for="check"><span class="icon"></span> Gardez-moi connecté</label>
 				</div>
 				<div class="group">
-					<input type="submit" class="button" value="Sign In" (click)="login()">
+					<input type="submit" class="button" value="Se connecter" (click)="login()">
 				</div>
 				<div class="hr"></div>
 				
@@ -30,11 +30,11 @@
 			<div class="sign-up-form">
 				<form (ngSubmit)="register()"  [formGroup]="registerForm"  >
 				<div class="form-group">
-					<label for="firstname">firstname</label>
+					<label for="firstname">Nom</label>
 					<input id="firstname" class="form-control" formControlName="firstname" type="string" required>
 				  </div>
 				  <div class="form-group">
-					<label for="lastname">lastname</label>
+					<label for="lastname">Prénom</label>
 					<input id="lastname" class="form-control" formControlName="lastname"  type="string" required>
 				  </div>
 				  <div class="form-group">
@@ -42,18 +42,18 @@
 					<input id="email" class="form-control"formControlName="email" type="string" required>
 				  </div>
 				  <div class="form-group">
-					<label for="numTel">Phone number</label>
+					<label for="numTel">Numéro de téléphone</label>
 					<input id="numTel" class="form-control" formControlName="numTel"  required>
 				  </div>
 				
 				
 				  <div class="form-group ">
-					<label for="password">password</label>
+					<label for="password">Mot de passe</label>
 					<input id="password" class="form-control"  formControlName="password" type="string">
 				  </div>
 				<div class="form-group">
-					<label>
-						Choose a university:
+					<label w-50>
+						 Entrez votre université :
 						<select formControlName="nomEcole">
 						  <option *ngFor="let ecole of response" [value]="ecole.nomEcole">{{ ecole.nomEcole }}</option>
 						</select>
@@ -64,11 +64,11 @@
 					
 
 				<div class="group">
-					<input type="submit" class="button" value="Sign Up" >
+					<input type="submit" class="button" value="S'inscrire" >
 				</div>
 				<div class="hr"></div>
 				<div class="foot">
-					<label for="tab-1">Already Member?</label>
+					<label for="tab-1">Déjà membre ?</label>
 				</div>
 			</form>
 			</div>

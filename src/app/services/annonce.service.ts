@@ -14,7 +14,6 @@ export class AnnonceService {
   
      token = this.authService.getToken();
    
-   
   getAnnonces(): Observable <Annonce[]> {
     return this.http.get<any>(`${this.apiUrl}`)
   }

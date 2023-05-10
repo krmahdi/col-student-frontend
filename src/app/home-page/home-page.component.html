@@ -9,41 +9,44 @@
 
     <nav id="navbar" class="navbar order-last order-lg-0">
       <ul>
-        <li><a  class="active">Home</a></li>
+        <li><a  class="active">Acceuil</a></li>
 
         <li class="dropdown"><a href="#"><span>About</span> <i class="bi bi-chevron-down"></i></a>
-          <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="team.html">Team</a></li>
-                         
-          
-          </ul>
+         
         </li>
 
-        <li><a [routerLink]="['/map']">Map</a></li>
-        <li><a [routerLink]="['/create']">Create</a></li>
-        <li><a [routerLink]="['/auth']">Register</a></li>
+        <li><a [routerLink]="['/map']">Carte</a></li>
+        <li><a [routerLink]="['/auth']">Se connecter</a></li>
 
       </ul>
     </nav><!-- .navbar -->
   </div>
 
   </header>
-    <section id="hero">
+    <section id="hero" class="mb-4">
       <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
   
         <div class="carousel-inner" role="listbox">
   
           <!-- Slide 1 -->
-          <div class="carousel-item active" style="background-image: url('src/assets/4.jpg');">
+          <div class="carousel-item active" style="background-image: url(https://www.letudiant.fr/uploads/mediatheque/ETU_ETU/4/0/2300440-adobestock-105092598-original.jpeg);">
             <div class="carousel-container">
               <div class="carousel-content animate__animated animate__fadeInUp">
-                <h2>Welcome to <span>DoorMatch</span></h2>
+                <h2>Bienvenue Chez <span>  DoorMatch</span></h2>
+                <div class="row align-items-center">
+                  <div class="col-lg-8">
+                    <input type="text" [(ngModel)]="term" class="form-control form-control-lg" placeholder="chercher votre studio">
+                  </div>
+                  <div class="col-lg-4">
+                    <button class="btn btn-primary btn-lg" >Proposer votre propre annonce</button>
+                  </div>
+                </div>
+                
                 <p></p>
               </div>
             </div>
           </div>
-  
+       
           <!-- Slide 2 -->
           
   
@@ -52,25 +55,26 @@
   
       </div>
     </section>
-    <div class="container text-center">
-      <input type="text" [(ngModel)]="term">
-    
-  
-      <div class="row ">
+
+    <div class="container text-center  my-4  shadow-lg p-3 mb-5 bg-body-tertiary rounded-1">
+      <h4 class="my-4 mx-2 shadow p-3 mb-5 bg-body-tertiary rounded  w-60 text-success text-start "><u> Quelques annonces à la proximité de 10 km de votre position actuelle</u></h4>
+
+      <div class="row  my-4">
           <div class="col-md-4 mb-4" *ngFor="let annonce of response  |filter:term">
-              <img [src]="annonce.photos[0]?.pathPhoto" height="250" width="250" >
+              <img [src]="annonce.photos[0]?.pathPhoto" height="250" width="250" class="my-2" >
               <div>superficie : {{ annonce.superficie }} m²</div>
               <div>loyer : {{ annonce.loyer }} TND</div>
               <div>adresse : {{ annonce.adresse }}</div>
               <div>{{ annonce.date | elapsedTime }}</div>
   
-              <button [routerLink]="['/annonce', annonce.idAnnonce]" type="button" class="button btn btn-primary">View</button>            
+              <button [routerLink]="['/annonce', annonce.idAnnonce]" type="button" class="button btn btn-success my-2">Voir</button>            
           </div>
 
 
       </div>
+      <button [routerLink]="['/annonces']" type="button" class="button btn btn-dark">Voir tout </button>            
+
   </div>
   
-  <button [routerLink]="['/annonces']" type="button" class="button btn btn-primary">Show More </button>            
 
 </body>

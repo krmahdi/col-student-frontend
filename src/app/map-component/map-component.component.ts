@@ -13,8 +13,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./map-component.component.css'],
 })
 export class MapComponentComponent implements OnInit {
-  map: L.Map;
+  myForm: FormGroup;
 
+  map: L.Map;
   homeCoords = {
     lat: 36.8252687,
     lon: 10.3106223,
@@ -29,16 +30,7 @@ export class MapComponentComponent implements OnInit {
     fumeurs: false,
   };
   popupText = 'Some popup text';
-  filterList = {
-    loyer: [100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600],
-    superficie: [40, 45, 50, 55, 60, 65, 70],
-    nbChambre: [0, 1, 2, 3, 4],
-    nbPersonne: [0, 1, 2, 3, 4, 5, 6],
-    animeaux: [true, false],
-    fumeurs: [true, false],
 
-    //here you can add as many filters as you want.
-  };
   markerIcon = {
     icon: L.icon({
       iconSize: [25, 41],
@@ -68,6 +60,9 @@ export class MapComponentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.myForm = this.formBuilder.group({
+      ecoleInput: [''],
+    });
     const mapContainer = L.DomUtil.get('map') || '';
     const mapOptions = this.options;
     this.map = L.map(mapContainer, mapOptions);
@@ -79,19 +74,18 @@ export class MapComponentComponent implements OnInit {
   initMarkers() {
     this.annonceService.getAnnonces().subscribe((data) => {
       data.map((annonce) => {
-     
-
-        const popupInfo = `<div class="container text-center">
+        const popupInfo = `<div role="button"
+        onclick="window.location.href='http://localhost:4200/annonce/${annonce.idAnnonce}'"
+         class="container text-center">
         <div class="row ">
-        <div class="col-md-12 mb-2 ">
+        <div class="col-md-12 mb-2">
         <div class=" rounded-2 my-4 w-auto">        
          <img class="rounded-1" src=${annonce.photos[0]?.pathPhoto} height="250" width="250" >
         </div>
 
-            <div>superficie : ${annonce.superficie} m²</div>
-             <div>loyer : ${annonce.loyer} TND</div>
-              <div>adresse : ${annonce.adresse}</div>
-        <div>${annonce.description}</div>
+            <div class="fw-bold">superficie : ${annonce.superficie} m²</div>
+             <div class="fw-bold">loyer : ${annonce.loyer} TND</div>
+              <div class="fw-bold">adresse : ${annonce.adresse}</div>
         </div>
         </div>
         </div>
@@ -101,6 +95,13 @@ export class MapComponentComponent implements OnInit {
           .addTo(this.map)
           .bindPopup(popupInfo);
       });
+    });
+  }
+  onSubmit() {
+    const ecoleName = this.myForm.get('ecoleInput')?.value;
+    console.log(ecoleName);
+    this.annonces = this.annonces.filter(function (annonce) {
+      return annonce.user.ecole.nomEcole === ecoleName;
     });
   }
 
